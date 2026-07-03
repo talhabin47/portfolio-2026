@@ -1,17 +1,958 @@
 ---
+// src/pages/index.astro
+import "../styles/global.css";
 
+// 1. Volunteering Data Array (Exactly 13 Items)
+const volunteerData = [
+  {
+    title: "Volunteer – 31st Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "June 2026",
+    desc: "Served as a volunteer in the MPH Team. Assisted with event operations during the university's 31st Convocation Ceremony.",
+  },
+  {
+    title: "Volunteer – 27th Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "June 2026",
+    desc: "Participated as a volunteer during the university's convocation ceremony. Supported event operations and logistics.",
+  },
+  {
+    title: "Volunteer – House of Horrors: No Way Out 2025",
+    issuer: "SEGi University & Colleges",
+    date: "November 2025",
+    desc: "Volunteered in the Event Management Team. Assisted with event coordination and execution.",
+  },
+  {
+    title: "Volunteer – 30th Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "November 2025",
+    desc: "Served in the Runners Team. Supported event logistics and coordination throughout the ceremony.",
+  },
+  {
+    title: "Volunteer – International Cultural Night",
+    issuer: "SEGi University & Colleges",
+    date: "October 2025",
+    desc: "Volunteered in the Registration Team. Assisted with participant registration and event reception.",
+  },
+  {
+    title: "Volunteer – Malaysian Showcase 2025: Ruang Rasa",
+    issuer: "SEGi University & Colleges",
+    date: "October 2025",
+    desc: "Member of the Decoration Team. Assisted in venue decoration and event preparation.",
+  },
+  {
+    title: "Volunteer – 29th Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "June 2025",
+    desc: "Served in the Runners Team. Assisted with logistics and smooth execution of the convocation ceremony.",
+  },
+  {
+    title: "Volunteer – Natchathira Deepavali Vizha",
+    issuer: "SEGi University & Colleges",
+    date: "October 2024",
+    desc: "Volunteered in the Security Team. Helped maintain order and ensure a safe environment for attendees.",
+  },
+  {
+    title: "Volunteer – Malaysian Showcase: Seru",
+    issuer: "SEGi University & Colleges",
+    date: "October 2024",
+    desc: "Member of the Logistics Team. Assisted with event setup, equipment handling, and operational support.",
+  },
+  {
+    title: "Volunteer – 28th Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "November 2024",
+    desc: "Managed the Registration & Lobby Area. Assisted graduates and guests while ensuring efficient event operations.",
+  },
+  {
+    title: "Volunteer – Aquatic Party (Taekwondo Club)",
+    issuer: "SEGi University & Colleges (SISS)",
+    date: "April 2024",
+    desc: "Assisted in organizing and supporting the Taekwondo Club's Aquatic Party. Contributed to event coordination and participant engagement.",
+  },
+  {
+    title: "Volunteer – 27th Convocation Ceremony",
+    issuer: "SEGi University & Colleges",
+    date: "June 2024",
+    desc: "Managed the Piazza Area at SEGi University, Kota Damansara. Assisted with crowd management and event coordination.",
+  },
+  {
+    title: "Volunteer – International Cultural Night",
+    issuer: "SEGi University & Colleges",
+    date: "November 2023",
+    desc: "Served in the Hospitality Team. Welcomed guests and provided support to participants and visitors throughout the event.",
+  },
+];
+
+// 2. Clubs, Societies & Leadership Data Array
+const clubsData = [
+  {
+    name: "SEGi Psychology Club (SPC)",
+    role: "Member",
+    date: "February 2026 – August 2026",
+    desc: "Participated in club activities and student engagement initiatives.",
+  },
+  {
+    name: "SEGi Volleyball Club (SVC)",
+    role: "Member",
+    date: "July 2025 – August 2026",
+    desc: "Participated in volleyball training sessions, recreational games, and club activities.",
+  },
+  {
+    name: "Indian Cultural Society (ICS)",
+    role: "Member",
+    date: "October 2024 – August 2026",
+    desc: "Participated in cultural programs and society activities. Supported initiatives promoting cultural diversity and student engagement.",
+  },
+  {
+    name: "SEGi Gamers Vault (SGV)",
+    role: "Member",
+    date: "October 2024 – August 2026",
+    desc: "Participated in gaming events and community activities. Engaged in esports and recreational gaming initiatives.",
+  },
+  {
+    name: "Malaysian Cultural Society (MCS)",
+    role: "Member",
+    date: "June 2024 – August 2026",
+    desc: "Participated in cultural events and community engagement activities. Supported programs celebrating Malaysia's multicultural heritage.",
+  },
+  {
+    name: "SEGi University Badminton Club (SUBC)",
+    role: "Member",
+    date: "September 2023 – August 2026",
+    desc: "Participated in badminton sessions and club activities. Promoted teamwork and sportsmanship through recreational sports.",
+  },
+  {
+    name: "Youth of Hope (SEGi Islamic Club)",
+    role: "Secretary",
+    date: "February 2024 – November 2024",
+    desc: "Managed meeting documentation, correspondence, and administrative records. Coordinated club activities and supported the executive committee in organizing events.",
+  },
+  {
+    name: "SEGi International Students Society (SISS)",
+    role: "Director of Hospitality & Catering",
+    date: "February 2024 – September 2024",
+    desc: "Led hospitality and catering operations for student events and university programs. Coordinated volunteers and ensured smooth hospitality services during events.",
+  },
+];
+
+// 3. Certifications Data Array
+const certsData = [
+  {
+    title: "The Complete Android 14 & Kotlin Masterclass (66.5 Hrs)",
+    issuer: "Udemy",
+    date: "Feb 2026",
+  },
+  {
+    title: "Top </> Coders: Python Programming Fundamentals",
+    issuer: "Data Science Association",
+    date: "Aug 2025",
+  },
+  {
+    title: "International Driving Permit (IDP)",
+    issuer: "Automobile Association of Bangladesh",
+    date: "Sep 2025",
+  },
+  {
+    title: "Prepare Data for ML APIs on Google Cloud",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Set Up an App Dev Environment",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Build a Secure Google Cloud Network",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Implement Load Balancing on Compute Engine",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Data, ML & AI in Google Cloud",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Networking & Security in Google Cloud",
+    issuer: "Google Cloud",
+    date: "Apr 2025",
+  },
+  {
+    title: "Cloud Computing Fundamentals",
+    issuer: "Google Cloud",
+    date: "Mar 2025",
+  },
+  {
+    title: "Infrastructure in Google Cloud",
+    issuer: "Google Cloud",
+    date: "Mar 2025",
+  },
+  {
+    title: "Volunteer Recognition (Cultural Night, House of Horrors)",
+    issuer: "SEGi University",
+    date: "Oct-Nov 2025",
+  },
+  {
+    title: "Volunteer Recognition (Malaysian Showcase, Deepavali)",
+    issuer: "SEGi University",
+    date: "Oct 2024",
+  },
+  {
+    title: "Group Chat: Self-Compassion with Person-Centred Therapy",
+    issuer: "SEGi University",
+    date: "Sep 2024",
+  },
+  {
+    title: "Fundamentals of Digital Marketing",
+    issuer: "Google Digital Academy",
+    date: "Nov 2023",
+  },
+  {
+    title: "Google Analytics for Beginners",
+    issuer: "Google Digital Academy",
+    date: "Nov 2023",
+  },
+  {
+    title: "Volunteer Recognition (International Cultural Night)",
+    issuer: "SEGi University",
+    date: "Nov 2023",
+  },
+  {
+    title: "International English Language Testing System (IELTS)",
+    issuer: "British Council",
+    date: "Dec 2022",
+  },
+];
+
+// 4. School Qualifications Data Array
+const schoolData = [
+  {
+    title: "General Certificate of Education (Cambridge A Level)",
+    date: "October 2022",
+    subjects: "Mathematics, Chemistry, Physics",
+  },
+  {
+    title: "General Certificate of Education (Cambridge O Level)",
+    date: "October 2020",
+    subjects: "Mathematics, Advanced Mathematics, English",
+  },
+  {
+    title: "General Certificate of Education (Cambridge O Level)",
+    date: "October 2019",
+    subjects: "Chemistry, Physics, Computer Science",
+  },
+];
+
+// 5. Languages Data Array
+const languagesData = [
+  { name: "Bengali", proficiency: "Native or bilingual proficiency" },
+  { name: "English", proficiency: "Full professional proficiency" },
+  { name: "Hindi", proficiency: "Professional working proficiency" },
+  { name: "Urdu", proficiency: "Professional working proficiency" },
+  { name: "Malay", proficiency: "Limited working proficiency" },
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohammad Talha | Software Engineer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Enforces smooth scrolling across all browsers */
+      html {
+        scroll-behavior: smooth !important;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #ffffff;
+        color: #1d1d1f;
+      }
+
+      /* Custom Modal Backdrop Styling */
+      dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+      }
+
+      /* Custom Smooth Floating Animations */
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(4deg);
+        }
+      }
+      .animate-float {
+        animation: float 7s ease-in-out infinite;
+      }
+      .animate-float-delayed {
+        animation: float 9s ease-in-out infinite 3s;
+      }
+      .animate-float-slow {
+        animation: float 12s ease-in-out infinite 1s;
+      }
+
+      /* Hide scrollbar for Apple-like horizontal carousels */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="antialiased relative z-0">
+    <!-- Apple-style Sticky Navigation Bar -->
+    <nav
+      class="fixed top-0 left-0 w-full z-50 bg-[#1d1d1f]/85 backdrop-blur-md border-b border-white/10 text-white"
+    >
+      <div
+        class="max-w-4xl mx-auto px-6 py-4 flex flex-wrap justify-between items-center gap-4"
+      >
+        <!-- href="#" automatically scrolls to the very top smoothly -->
+        <a
+          href="#"
+          class="font-extrabold tracking-tight text-lg hover:text-gray-300 transition-colors"
+          >MT.</a
+        >
+        <div
+          class="flex flex-wrap gap-4 md:gap-8 text-sm font-semibold tracking-wide"
+        >
+          <a href="#projects" class="hover:text-gray-400 transition-colors"
+            >Projects</a
+          >
+          <a
+            href="#certifications"
+            class="hover:text-gray-400 transition-colors"
+            >Certifications & Awards</a
+          >
+          <a href="#volunteering" class="hover:text-gray-400 transition-colors"
+            >Volunteering</a
+          >
+          <a href="#socials" class="hover:text-gray-400 transition-colors"
+            >Socials</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Decorative Background Layer (Hidden on Mobile) -->
+    <div
+      class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden hidden lg:block"
+    >
+      <div
+        class="absolute top-[-10%] left-[-10%] w-[40rem] h-[40rem] bg-gray-50 rounded-full blur-3xl opacity-80"
+      >
+      </div>
+      <div
+        class="absolute top-[40%] right-[-10%] w-[35rem] h-[35rem] bg-blue-50/50 rounded-full blur-3xl opacity-80"
+      >
+      </div>
+      <div
+        class="absolute top-[15%] left-[10%] text-4xl opacity-30 animate-float grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        👨‍💻
+      </div>
+      <div
+        class="absolute top-[35%] right-[12%] text-5xl opacity-20 animate-float-delayed grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        🚀
+      </div>
+      <div
+        class="absolute top-[65%] left-[8%] text-4xl opacity-20 animate-float-slow grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        💡
+      </div>
+      <div
+        class="absolute top-[20%] right-[18%] text-3xl opacity-30 animate-float grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        ⚙️
+      </div>
+      <div
+        class="absolute top-[75%] right-[10%] text-4xl opacity-20 animate-float-delayed grayscale hover:grayscale-0 transition-all duration-500"
+      >
+        📱
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="max-w-4xl mx-auto px-6 pb-12 pt-32 md:pt-40">
+      <!-- Hero Section -->
+      <header class="mb-20">
+        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6">
+          Hi, I'm Talha 👨‍💻
+        </h1>
+        <p
+          class="text-xl md:text-2xl text-gray-500 font-medium max-w-2xl leading-relaxed"
+        >
+          Software Engineering student specializing in bridging robust
+          architecture with AI. Building intelligent, user-centric digital
+          solutions.
+        </p>
+      </header>
+
+      <main class="space-y-8">
+        <!-- Bento Grid: Skills & About -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <section
+            class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-md"
+          >
+            <h2 class="text-xl font-bold mb-4">🚀 Expertise</h2>
+            <p class="text-gray-600 leading-relaxed">
+              AI Automation Engineer at SRKK Group. Focused on Microsoft Power
+              Platform, Copilot Studio, and Azure OpenAI to drive enterprise
+              digital transformation.
+            </p>
+          </section>
+
+          <section
+            class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.02] hover:shadow-md"
+          >
+            <h2 class="text-xl font-bold mb-4">🛠️ Tech Stack</h2>
+            <div class="flex flex-wrap gap-2">
+              {
+                [
+                  "Kotlin",
+                  "Python",
+                  "TypeScript",
+                  "React",
+                  "Jetpack Compose",
+                  "SQL",
+                  "Java",
+                ].map((tech) => (
+                  <span class="bg-white px-3 py-1 rounded-full text-sm font-semibold border border-gray-100 shadow-sm hover:shadow transition-shadow">
+                    {tech}
+                  </span>
+                ))
+              }
+            </div>
+          </section>
+        </div>
+
+        <!-- Experience Section -->
+        <section
+          class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-6">💼 Experience</h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-bold text-lg">AI Automation Engineer (Intern)</h3>
+              <p class="text-gray-500 font-medium">
+                SRKK Group | Jun 2026 - Present
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Education Section -->
+        <section
+          class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-6">👨🏼‍🎓 Education</h2>
+          <div class="space-y-6">
+            <!-- SEGi Block -->
+            <div>
+              <h3 class="font-bold text-lg">
+                SEGi University & University of Central Lancashire
+              </h3>
+              <p class="text-gray-500 font-medium mb-3">
+                BSc (Hons) Information Technology (Software Engineering) | 2023
+                - 2026
+              </p>
+              <button
+                onclick="document.getElementById('clubsModal').showModal()"
+                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 text-sm font-bold hover:border-gray-400 hover:shadow-sm transition-all text-gray-700"
+              >
+                <span>View Clubs & Leadership ↗</span>
+              </button>
+            </div>
+
+            <!-- Sunshine Grammar School Block with new Modal Button -->
+            <div class="border-t border-gray-200 pt-4">
+              <h3 class="font-bold text-lg">Sunshine Grammar School</h3>
+              <p class="text-gray-500 font-medium mb-3">Oct 2019 - Oct 2022</p>
+              <button
+                onclick="document.getElementById('schoolModal').showModal()"
+                class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-gray-200 text-sm font-bold hover:border-gray-400 hover:shadow-sm transition-all text-gray-700"
+              >
+                <span>View Academic Qualifications ↗</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Languages Section (New) -->
+        <section
+          class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-6">🗣️ Languages</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+              languagesData.map((lang) => (
+                <div class="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center transform transition-transform hover:scale-[1.02]">
+                  <h3 class="font-bold text-gray-900">{lang.name}</h3>
+                  <p class="text-gray-500 text-sm mt-1">{lang.proficiency}</p>
+                </div>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section
+          id="certifications"
+          class="scroll-mt-28 bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md overflow-hidden"
+        >
+          <div class="flex justify-between items-end mb-6">
+            <h2 class="text-2xl font-bold">📜 Certifications</h2>
+            <p class="text-sm font-medium text-gray-400">Swipe to explore →</p>
+          </div>
+
+          <!-- Apple-style Horizontal Scrolling Carousel -->
+          <div
+            class="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 no-scrollbar -mx-4 px-4"
+          >
+            {
+              certsData.map((cert) => (
+                <a
+                  href="#"
+                  class="shrink-0 w-72 snap-center bg-white p-6 rounded-3xl border border-gray-100 hover:border-gray-300 transition-all group shadow-sm hover:shadow-md flex flex-col justify-between min-h-[160px]"
+                >
+                  <div>
+                    <h3 class="font-bold text-base leading-tight group-hover:text-blue-600 transition-colors mb-2">
+                      {cert.title}
+                    </h3>
+                    <p class="text-gray-500 text-sm font-medium">
+                      {cert.issuer}
+                    </p>
+                  </div>
+                  <div class="mt-4 flex justify-between items-end">
+                    <p class="text-gray-400 text-xs font-bold uppercase tracking-wider">
+                      {cert.date}
+                    </p>
+                    <span class="text-gray-300 group-hover:text-blue-600 transition-colors font-bold">
+                      ↗
+                    </span>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </section>
+
+        <!-- Awards Section (Triggers Modal) -->
+        <section
+          id="awards"
+          class="bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md"
+        >
+          <h2 class="text-2xl font-bold mb-6">🏆 Awards & Recognition</h2>
+          <button
+            onclick="document.getElementById('awardModal').showModal()"
+            class="w-full text-left block bg-white p-6 rounded-2xl border border-gray-100 hover:border-blue-500 transition-all group shadow-sm hover:shadow-md relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-yellow-400 to-yellow-600 group-hover:w-3 transition-all duration-300"
+            >
+            </div>
+            <div class="pl-4">
+              <h3
+                class="font-bold text-xl group-hover:text-blue-600 transition-colors flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2"
+              >
+                Best Degree Project Award
+                <span
+                  class="text-gray-400 group-hover:text-blue-600 bg-gray-50 px-3 py-1 rounded-full text-sm self-start sm:self-auto whitespace-nowrap"
+                  >View Details ↗</span
+                >
+              </h3>
+              <p class="text-gray-500 text-sm mt-2 font-medium">
+                Technovation 2026 • SEGi University
+              </p>
+              <p class="text-gray-400 text-sm mt-1">
+                Awarded for BiteWise, a commercial-grade offline-first native
+                Android application.
+              </p>
+            </div>
+          </button>
+        </section>
+
+        <!-- Volunteering Section (Triggers Modal with Dynamic Array Counting) -->
+        <section
+          id="volunteering"
+          class="scroll-mt-28 bg-[#f5f5f7]/80 backdrop-blur-sm p-8 rounded-[2rem] flex flex-col md:flex-row justify-between items-center gap-6 transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-md"
+        >
+          <div>
+            <h2 class="text-2xl font-bold mb-2">🤝 Volunteering</h2>
+            <p class="text-gray-600 font-medium">
+              <span class="font-bold text-black">{volunteerData.length}</span> community
+              engagements and active event operations.
+            </p>
+          </div>
+          <button
+            onclick="document.getElementById('volunteerModal').showModal()"
+            class="bg-[#1d1d1f] text-white px-8 py-4 rounded-full font-bold hover:bg-gray-800 transition-all shadow-md hover:shadow-lg whitespace-nowrap"
+          >
+            View All Experience
+          </button>
+        </section>
+      </main>
+    </div>
+
+    <!-- Dark Section (Projects & Footer) -->
+    <div
+      id="projects"
+      class="scroll-mt-20 bg-[#1d1d1f] text-white py-24 px-6 relative z-10"
+    >
+      <div class="max-w-4xl mx-auto">
+        <div class="mb-12">
+          <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+            Featured Engineering ⚡
+          </h2>
+          <p class="text-gray-400 mt-2 text-lg font-medium">
+            Turning architectural constraints into seamless products.
+          </p>
+        </div>
+
+        <section
+          class="bg-[#2d2d30] p-8 md:p-10 rounded-[2.5rem] transform transition-all duration-300 ease-out hover:scale-[1.01] hover:shadow-2xl border border-white/5"
+        >
+          <h3 class="text-3xl font-bold mb-4 flex flex-wrap items-center gap-3">
+            <span>📱</span> BiteWise
+            <span
+              class="text-xs font-bold uppercase tracking-wider bg-white/10 px-3 py-1 rounded-full text-gray-300"
+              >Award Winner</span
+            >
+          </h3>
+          <p class="text-gray-400 text-lg mb-8 max-w-2xl leading-relaxed">
+            Best Degree Project 2026. A commercial-grade, offline-first native
+            Android application. Engineered with a hybrid data repository using
+            Room/Firebase synchronization for zero-latency mobile performance.
+          </p>
+          <div class="flex flex-wrap items-center gap-4">
+            <a
+              href="#"
+              class="bg-white text-black px-6 py-3 rounded-full font-bold hover:bg-gray-200 transition-colors duration-200"
+            >
+              View Case Study ↗
+            </a>
+            <div
+              class="flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 px-4 py-2 rounded-full"
+            >
+              <span class="w-2 h-2 rounded-full bg-blue-400 animate-pulse"
+              ></span>
+              <span
+                class="text-xs font-bold uppercase tracking-wider text-blue-300"
+                >Production / Maintenance</span
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer / Socials inside Dark Area -->
+        <footer
+          id="socials"
+          class="mt-32 border-t border-white/10 pt-16 flex flex-col items-center gap-6"
+        >
+          <h2 class="text-3xl font-extrabold tracking-tight mb-2">
+            Connect With Me 🌍
+          </h2>
+          <p class="text-gray-400 font-medium mb-4 text-center max-w-md">
+            Currently seeking full-time Software Engineering and AI Automation
+            roles starting late 2026.
+          </p>
+
+          <a
+            href="mailto:talhalokman47@gmail.com"
+            class="text-xl md:text-2xl font-bold text-white hover:text-gray-300 transition-colors underline underline-offset-4 mb-6"
+          >
+            talhalokman47@gmail.com
+          </a>
+
+          <div class="flex flex-wrap justify-center gap-6 md:gap-10">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white font-semibold transition-colors text-lg"
+              >LinkedIn</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white font-semibold transition-colors text-lg"
+              >GitHub</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white font-semibold transition-colors text-lg"
+              >Facebook</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white font-semibold transition-colors text-lg"
+              >Instagram</a
+            >
+          </div>
+
+          <p class="text-gray-500 text-sm mt-12 font-medium">
+            © 2026 Mohammad Talha
+          </p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- ================= MODALS ================= -->
+
+    <!-- Academic Qualifications Native HTML Dialog (Modal) -->
+    <dialog
+      id="schoolModal"
+      class="p-0 m-auto rounded-[2rem] shadow-2xl border-0 w-[95%] max-w-2xl bg-[#ffffff] text-[#1d1d1f]"
+    >
+      <div
+        class="sticky top-0 bg-[#ffffff]/90 backdrop-blur-md border-b border-gray-100 px-8 py-6 flex justify-between items-center z-10"
+      >
+        <h2 class="text-2xl font-bold tracking-tight">
+          Academic Qualifications
+        </h2>
+        <button
+          onclick="document.getElementById('schoolModal').close()"
+          class="bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-black w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-8 max-h-[70vh] overflow-y-auto space-y-6">
+        {
+          schoolData.map((item, index) => (
+            <div
+              class={
+                index !== schoolData.length - 1
+                  ? "border-b border-gray-100 pb-5"
+                  : "pb-2"
+              }
+            >
+              <div class="flex justify-between items-start gap-4 mb-1">
+                <h3 class="font-bold text-lg">{item.title}</h3>
+                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded whitespace-nowrap">
+                  {item.date}
+                </span>
+              </div>
+              <p class="text-gray-500 font-medium text-sm mt-2">
+                Subjects Taken:
+              </p>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                {item.subjects}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </dialog>
+
+    <!-- Volunteering Native HTML Dialog (Modal) -->
+    <dialog
+      id="volunteerModal"
+      class="p-0 m-auto rounded-[2rem] shadow-2xl border-0 w-[95%] max-w-2xl bg-[#ffffff] text-[#1d1d1f]"
+    >
+      <div
+        class="sticky top-0 bg-[#ffffff]/90 backdrop-blur-md border-b border-gray-100 px-8 py-6 flex justify-between items-center z-10"
+      >
+        <h2 class="text-2xl font-bold tracking-tight">Volunteer Experience</h2>
+        <button
+          onclick="document.getElementById('volunteerModal').close()"
+          class="bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-black w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-8 max-h-[70vh] overflow-y-auto space-y-6">
+        {
+          volunteerData.map((item, index) => (
+            <div
+              class={
+                index !== volunteerData.length - 1
+                  ? "border-b border-gray-100 pb-5"
+                  : "pb-2"
+              }
+            >
+              <h3 class="font-bold text-lg">{item.title}</h3>
+              <p class="text-gray-500 font-medium text-sm">
+                {item.issuer} | {item.date}
+              </p>
+              <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </dialog>
+
+    <!-- Clubs & Leadership Native HTML Dialog (Modal) -->
+    <dialog
+      id="clubsModal"
+      class="p-0 m-auto rounded-[2rem] shadow-2xl border-0 w-[95%] max-w-2xl bg-[#ffffff] text-[#1d1d1f]"
+    >
+      <div
+        class="sticky top-0 bg-[#ffffff]/90 backdrop-blur-md border-b border-gray-100 px-8 py-6 flex justify-between items-center z-10"
+      >
+        <h2 class="text-2xl font-bold tracking-tight">Clubs & Leadership</h2>
+        <button
+          onclick="document.getElementById('clubsModal').close()"
+          class="bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-black w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-8 max-h-[70vh] overflow-y-auto space-y-6">
+        {
+          clubsData.map((club, index) => (
+            <div
+              class={
+                index !== clubsData.length - 1
+                  ? "border-b border-gray-100 pb-5"
+                  : "pb-2"
+              }
+            >
+              <div class="flex justify-between items-start gap-4 mb-1">
+                <h3 class="font-bold text-lg">{club.name}</h3>
+                <span class="bg-gray-100 text-gray-600 text-xs font-bold px-2 py-1 rounded whitespace-nowrap">
+                  {club.role}
+                </span>
+              </div>
+              <p class="text-gray-500 font-medium text-sm mb-2">{club.date}</p>
+              <p class="text-gray-600 text-sm leading-relaxed">{club.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </dialog>
+
+    <!-- Award Native HTML Dialog (Modal) -->
+    <dialog
+      id="awardModal"
+      class="p-0 m-auto rounded-[2rem] shadow-2xl border-0 w-[95%] max-w-2xl bg-[#ffffff] text-[#1d1d1f]"
+    >
+      <div
+        class="sticky top-0 bg-[#ffffff]/90 backdrop-blur-md border-b border-gray-100 px-8 py-6 flex justify-between items-center z-10"
+      >
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🏆</span>
+          <h2 class="text-xl font-bold tracking-tight">Award Details</h2>
+        </div>
+        <button
+          onclick="document.getElementById('awardModal').close()"
+          class="bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-black w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <div class="p-8 max-h-[70vh] overflow-y-auto">
+        <h3 class="text-2xl font-extrabold mb-2">Best Degree Project Award</h3>
+        <p
+          class="text-blue-600 font-bold text-sm uppercase tracking-wider mb-6"
+        >
+          Final Year Project, Technovation 2026
+        </p>
+
+        <div class="space-y-6 text-gray-600 leading-relaxed">
+          <div class="flex items-start gap-4">
+            <div class="bg-gray-100 p-3 rounded-full text-lg">🏛️</div>
+            <div>
+              <p class="font-bold text-black">Issuer</p>
+              <p class="text-sm">
+                Faculty of Engineering, Built Environment and Information
+                Technology, SEGi University
+              </p>
+              <p class="text-sm text-gray-400 mt-1">April 2026</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="bg-gray-100 p-3 rounded-full text-lg">📱</div>
+            <div>
+              <p class="font-bold text-black">Application Focus</p>
+              <p class="text-sm">
+                BiteWise, an offline-first nutrition tracking application.
+              </p>
+            </div>
+          </div>
+
+          <div class="bg-gray-50 border border-gray-100 p-6 rounded-2xl">
+            <p class="mb-4">
+              Awarded "Best Degree Project" at the Final Year Project 2
+              Technovation 2026 showcase. This award recognized the development
+              and successful defense of my capstone software engineering
+              project.
+            </p>
+            <p>
+              The project was recognized for addressing real-world software
+              challenges and public health gaps, specifically targeting unbiased
+              health tracking (loss, gain, and maintenance) for the general
+              population.
+            </p>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- Global Script to handle background scrolling and click-outside-to-close -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const dialogs = document.querySelectorAll("dialog");
+
+        // Watch for modals opening/closing to lock body scroll
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.attributeName === "open") {
+              // Ensure we are checking an Element to satisfy the TS linter
+              if (
+                mutation.target instanceof Element &&
+                mutation.target.hasAttribute("open")
+              ) {
+                // Freeze background scroll
+                document.body.style.overflow = "hidden";
+              } else {
+                // Restore background scroll
+                document.body.style.overflow = "";
+              }
+            }
+          });
+        });
+
+        dialogs.forEach((dialog) => {
+          // Observe each dialog for the 'open' attribute changing
+          observer.observe(dialog, { attributes: true });
+
+          // Close modal when clicking on the dark backdrop area
+          dialog.addEventListener("click", (e) => {
+            const rect = dialog.getBoundingClientRect();
+            // Check if the click coordinates are outside the modal bounds
+            const isInDialog =
+              rect.top <= e.clientY &&
+              e.clientY <= rect.top + rect.height &&
+              rect.left <= e.clientX &&
+              e.clientX <= rect.left + rect.width;
+            if (!isInDialog) {
+              dialog.close();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
