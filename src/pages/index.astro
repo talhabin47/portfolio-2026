@@ -253,7 +253,7 @@ const languagesData = [
 ];
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -1042,6 +1042,24 @@ const languagesData = [
           // Initialize
           updateSliderUI();
         }
+
+        // --- 3. Force Smooth Scrolling for Navigation Links ---
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") {
+              // Scroll to very top
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            } else {
+              // Scroll to specific section
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+              }
+            }
+          });
+        });
       });
     </script>
   </body>
