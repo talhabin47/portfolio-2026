@@ -259,8 +259,8 @@ const languagesData = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mohammad Talha | Software Engineer</title>
 
-    <!-- This script forces Tailwind CSS to load correctly on Vercel -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CRITICAL FIX: is:inline forces Astro to leave this script alone in production -->
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -328,7 +328,7 @@ const languagesData = [
           >MT.</a
         >
 
-        <!-- Swipeable Mobile Menu -->
+        <!-- Swipeable Mobile Menu: Removed flex-wrap, added overflow-x-auto, whitespace-nowrap, and no-scrollbar -->
         <div
           class="flex gap-6 md:gap-8 text-sm font-semibold tracking-wide overflow-x-auto no-scrollbar whitespace-nowrap scroll-smooth"
         >
@@ -481,7 +481,7 @@ const languagesData = [
               </button>
             </div>
 
-            <!-- Sunshine Grammar School Block with new Modal Button -->
+            <!-- Sunshine Grammar School Block -->
             <div class="border-t border-gray-200 pt-4">
               <h3 class="font-bold text-lg">Sunshine Grammar School</h3>
               <p class="text-gray-500 font-medium mb-3">Oct 2019 - Oct 2022</p>
@@ -522,7 +522,7 @@ const languagesData = [
           </div>
 
           <div class="relative w-full">
-            <!-- Scrollable Cards -->
+            <!-- Scrollable Cards - Now static divs without hover link effects -->
             <div
               id="certSlider"
               class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 no-scrollbar scroll-smooth"
@@ -968,7 +968,7 @@ const languagesData = [
     </dialog>
 
     <!-- Global Scripts -->
-    <script>
+    <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
         // --- 1. Modal Background Scroll Lock ---
         const dialogs = document.querySelectorAll("dialog");
